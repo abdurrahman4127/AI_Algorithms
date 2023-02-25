@@ -17,14 +17,14 @@ class Node:
     def __init__(self, nodename, parent, g, h):
         self.node_name = nodename
         self.parent = parent
-        self.g = g             # (actual) cost from source to a current node
+        self.g = g             # (actual) cost from source to current node
         self.h = h             # heuristic cost of a node from goal node
         self.f = g + h         # heuristic cost + actual cost (from src)
 
     # orderin the priority queue based on the value of 'f'
     def __lt__(self, other_node):
         return self.f < other_node.f
-    
+
 
 def main(src, goal):
     NOb = Node(src, None, 0, H[src])  # params: nodename, parent, g, h
@@ -46,7 +46,7 @@ def main(src, goal):
             parent_node = NOb.parent
             while parent_node:          # while parent node exists
                 goal_path.append(parent_node.node_name)
-                parent_node = parent_node.parent  # updating the parent
+                parent_node = parent_node.parent  # updating the parent to its parent
             
             goal_path.reverse()
 
@@ -62,7 +62,8 @@ def main(src, goal):
                 # g = cost of current node + (cost of reaching that node from source, NOb.g)
                 g = cost + NOb.g     
 
-                next_NOb = Node(next_nodename, NOb, g, H[next_nodename])
+                # params: Node(nodename, parent, g, h)
+                next_NOb = Node(next_nodename, NOb, g, H[next_nodename]) 
                 pq.put(next_NOb)
 
             # NOb = None
@@ -73,5 +74,5 @@ def main(src, goal):
 # starting exeucution
 goal_path, total_cost = main(src='S', goal='D')
 
-print("path:", goal_path)
-print("total cost:", total_cost)
+print(f"path: {goal_path}")
+print(f"total cost: {total_cost}")
