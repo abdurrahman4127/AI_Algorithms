@@ -75,4 +75,5 @@ def main(src, goal):
 goal_path, total_cost = main(src='S', goal='D')
 
 print(f"path: {goal_path}")
-print(f"total cost: {total_cost}")
+# print(f"total cost: {total_cost}")
+print(" --> ".join(goal_path))
