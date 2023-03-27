@@ -1,6 +1,6 @@
 def initialize():
-    # return [7, 1, 9, 0, 5, 8, 4, 2, 10, 0, 20]
-    return [2, 1, 5, 0]
+    return [7, 1, 9, 0, 5, 8, 4, 2, 10, 0, 20]
+    # return [2, 1, 5, 0]
 
 # getting neighbours
 def get_all_neighbours(i, state):
