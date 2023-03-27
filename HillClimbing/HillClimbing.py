@@ -2,7 +2,7 @@ def initialize():
     # return [7, 1, 9, 0, 5, 8, 4, 2, 10, 0, 20]
     return [2, 1, 5, 0]
 
-# to get neighbours (list slicing)
+# getting neighbours
 def get_all_neighbours(i, state):
     if i == len(state) - 1:     # can't shift to right if only an element is left
         return state
