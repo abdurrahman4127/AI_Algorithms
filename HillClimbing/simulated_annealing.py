@@ -2,6 +2,7 @@ import random
 import math
 
 def initialize():
+    # return [7, 1, 9, 0, 5, 8, 4, 2, 10, 0, 20]
     return [2, 1, 5, 0]
 
 def get_random_neighbour(state):
@@ -33,17 +34,17 @@ def simulated_annealing(initial_state):
         
         del_E = next_cost - current_cost
         
-        # when next state has lower cost, choose that one
+        # if next state has lower cost, choose that one
         if del_E < 0:
             current_state = next_state
             current_cost = next_cost
         else:
-            # when next state has higher cost, choose randomly
+            # if next state has higher cost, choose it with a random possibility
             if math.exp(-del_E/T) > random.uniform(0, 1):   # e ^ (-del_E/T)
                 current_state = next_state
                 current_cost = next_cost
        
-        T *= cooling_rate  # update temperature
+        T *= cooling_rate         # update temperature
         iteration_start += 1      # update iteration number
         
         
