@@ -1,10 +1,10 @@
 def initialize():
-    return [7, 1, 9, 0, 5, 8, 4, 2, 10, 0, 20]
-    # return [2, 1, 5, 0]
+    # return [7, 1, 9, 0, 5, 8, 4, 2, 10, 0, 20]
+    return [2, 1, 5, 0]
 
 # to get neighbours (list slicing)
 def get_all_neighbours(i, state):
-    if i == len(state) - 1:
+    if i == len(state) - 1:     # can't shift to right if only an element is left
         return state
     return state[:i] + [state[i+1], state[i]] + state[i+2:]
     # until index + after index (1st one) + the index + rest (after 2nd index)
@@ -24,7 +24,7 @@ def claculate_cost(state):
 def state_generation(current_state):
     while True:
         current_state_cost = claculate_cost(current_state)
-        print(current_state, current_state_cost)
+        print(f"{current_state} | cost: {current_state_cost}")
         
         min_next_cost = 99999 # infinity
         min_next_state = None
@@ -53,7 +53,7 @@ def state_generation(current_state):
         if min_next_cost < current_state_cost:
             current_state = min_next_state
         else:
-            print(f"final state: {current_state} | cost = {current_state_cost}")
+            print(f"final state: {current_state} | cost: {current_state_cost}")
             break
         
         

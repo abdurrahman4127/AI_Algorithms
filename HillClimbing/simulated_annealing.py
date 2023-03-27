@@ -19,28 +19,32 @@ def claculate_cost(state):
 
 def simulated_annealing(initial_state):
     T = 1.0
-    alpha = 0.99
-    stopping_T = 0.00001
-    stopping_iter = 100000
+    cooling_rate = 0.99             # the cooling rate (0 to 0.99) 
+    T_limit = 0.00001
+    iteration_start = 0
+    iteration_limit = 1000
+    
     current_state = initial_state
     current_cost = claculate_cost(current_state)
-    i = 0
-    while T > stopping_T and i < stopping_iter:
-        next_state = get_random_neighbour(current_state)
+    
+    while T > T_limit and iteration_start < iteration_limit:
+        next_state = get_random_neighbour(current_state)   # getting a random neighbour
         next_cost = claculate_cost(next_state)
         
         del_E = next_cost - current_cost
         
+        # when next state has lower cost, choose that one
         if del_E < 0:
             current_state = next_state
             current_cost = next_cost
         else:
-            if math.exp(-del_E/T) > random.uniform(0, 1):
+            # when next state has higher cost, choose randomly
+            if math.exp(-del_E/T) > random.uniform(0, 1):   # e ^ (-del_E/T)
                 current_state = next_state
                 current_cost = next_cost
        
-        T *= alpha
-        i += 1
+        T *= cooling_rate  # update temperature
+        iteration_start += 1      # update iteration number
         
         
     return current_state, current_cost
@@ -48,8 +52,9 @@ def simulated_annealing(initial_state):
 
 def main():
     initial_state = initialize()
-    final_state, cost = simulated_annealing(initial_state)
     print(f"initial: {initial_state} | cost = {claculate_cost(initial_state)}")
+    
+    final_state, cost = simulated_annealing(initial_state)
     print(f"final: {final_state} | cost = {cost}")
 
 main()
