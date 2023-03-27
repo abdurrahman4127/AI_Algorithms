@@ -1,6 +1,6 @@
 def initialize():
-    # return [2, 1, 5, 0]
-    return [7, 1, 9, 0, 5, 8, 4, 2, 10, 0, 20]
+    return [2, 1, 5, 0]
+    # return [7, 1, 9, 0, 5, 8, 4, 2, 10, 0, 20]
 
 
 def calculate_cost(state):
@@ -17,7 +17,7 @@ def get_neighbour(i, j, state):
 def state_generation(current_state):
     while True:
         current_state_cost = calculate_cost(current_state)
-        print(f"{current_state} | cost = {current_state_cost}")
+        # print(f"{current_state} | cost = {current_state_cost}")
         
         neighbors = []  
         for i in range(len(current_state)):
@@ -46,6 +46,7 @@ def state_generation(current_state):
 
 def main():
     state = initialize()
+    print(f"initial state: {state} | cost = {calculate_cost(state)}")
     state_generation(state)
 
 main()

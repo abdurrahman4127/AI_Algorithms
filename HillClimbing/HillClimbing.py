@@ -38,7 +38,7 @@ def state_generation(current_state):
         # getting all neighbours' cost
         neighbour_costs = []
         for i in range(len(all_neighbours)):
-            cost = claculate_cost(all_neighbours[i])    # 'i' from all neighbours
+            cost = claculate_cost(all_neighbours[i])  # all_neighbours list contains list of all neighbour
             neighbour_costs.append(cost)
             
         
