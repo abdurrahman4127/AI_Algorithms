@@ -57,9 +57,9 @@ def state_generation(current_state):
             break
         
         
-# stating the execution
 def main():
     state = initialize()
     state_generation(state)
 
+# stating the execution
 main()
