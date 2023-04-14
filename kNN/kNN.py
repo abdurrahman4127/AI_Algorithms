@@ -33,7 +33,7 @@ class kNN:
         
         for i in range(len(X_test)):
             x_test = X_test[i]
-            eucleadian_dist = np.sqrt(np.sum((self.X_train - x_test) ** 2, axis=1)) # eucleadian dist
+            eucleadian_dist = np.sqrt(np.sum((self.X_train - x_test) ** 2, axis=1)) # euclidean distance
             min_dist_indices = np.argsort(eucleadian_dist)[:k]       # indices of k nearest neighbors
             y_neighbor = self.y_train[min_dist_indices]       # output (y) of k nearest neighbors
             y_test_predicted[i] = np.bincount(y_neighbor).argmax()  # most occurance
