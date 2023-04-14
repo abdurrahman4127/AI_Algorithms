@@ -17,7 +17,7 @@ class kNN:
         self.X = self.X[all_indices]
         self.y = self.y[all_indices]
         
-        
+            
     # splitting the dataset into 80% - 20% 
     def split_dataset(self, ratio=0.8):
         split_size = int(len(self.X) * (ratio))
@@ -48,7 +48,7 @@ class kNN:
         
         for i in range(len(y_test_predicted)):
             if y_test_predicted[i] == self.y_test[i]:    
-                accurate_prediction += 1     # accurate when test & test-prediction match
+                accurate_prediction += 1     # accurate if test & test-prediction match
         
         accuracy = accurate_prediction / len(y_test_predicted)
         print(f"accuracy: {accuracy*100:.2f}%")
