@@ -5,11 +5,11 @@ class KMeansClustering:
     def __init__(self, k):
         self.k = k
         
+    # drawing the initial scatter plot
     def draw_initial_clusters(self):
         self.X = np.loadtxt("kMeansClustering/jain_feats.txt")              # initial points
         self.centroid_old = np.loadtxt("kMeansClustering/jain_centers.txt") # initial centroids
-        
-        # drawing the initial scatter plot 
+         
         plt.scatter(self.X[:, 0], self.X[:, 1], c='blue', label='X')
         plt.scatter(self.centroid_old[:, 0], self.centroid_old[:, 1], marker="*", c='red', label='centroid_old', s=200)
         plt.legend()
@@ -29,8 +29,9 @@ class KMeansClustering:
                     dist[j] = np.linalg.norm(self.X[i,:] - self.centroid_old[j,:])  # euclidean distance
                 label[i] = np.argmin(dist)
     
+            # mean of those val(s) assigned to the new centroid
             for j in range(len(self.centroid_new)):
-                self.centroid_new[j,:] = np.mean(self.X[label==j,:], axis=0)
+                self.centroid_new[j,:] = np.mean(self.X[label==j,:], axis=0) 
     
             # terminating condition 
             if np.max(np.abs(self.centroid_new - self.centroid_old)) < 1E-7:
