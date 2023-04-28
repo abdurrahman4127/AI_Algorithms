@@ -26,7 +26,7 @@ class Node:
         return self.f < other_node.f
 
 
-def main(src, goal):
+def a_star_search(src, goal):
     NOb = Node(src, None, 0, H[src])  # params: nodename, parent, g, h
     
     pq = PriorityQueue()
@@ -71,9 +71,11 @@ def main(src, goal):
     return goal_path, total_cost
 
 
-# starting exeucution
-goal_path, total_cost = main(src='S', goal='D')
+# starting the exeucution
+def main():
+    goal_path, total_cost = a_star_search(src='S', goal='D')
 
-print(f"path: {goal_path}")
-# print(f"total cost: {total_cost}")
-print(" --> ".join(goal_path))
+    print(f"total cost: {total_cost}")
+    print(" --> ".join(goal_path))
+
+main()
