@@ -20,18 +20,22 @@ class KMeansClustering:
     def update_centroids(self):
         self.centroid_new = np.zeros_like(self.centroid_old)  # for updated centroids
 
-        for e in range(1000):
+        for _ in range(1000):
             label = np.zeros(len(self.X), dtype=int)
             
             for i in range(len(self.X)):
                 dist = np.zeros(len(self.centroid_old))
+                
                 for j in range(len(self.centroid_old)):
                     dist[j] = np.linalg.norm(self.X[i,:] - self.centroid_old[j,:])  # euclidean distance
+                
                 label[i] = np.argmin(dist)
+    
     
             # mean of those val(s) assigned to the new centroid
             for j in range(len(self.centroid_new)):
                 self.centroid_new[j,:] = np.mean(self.X[label==j,:], axis=0) 
+    
     
             # terminating condition 
             if np.max(np.abs(self.centroid_new - self.centroid_old)) < 1E-7:
