@@ -33,10 +33,10 @@ class kNN:
         
         for i in range(len(X_test)):
             x_test = X_test[i]
-            eucleadian_dist = np.sqrt(np.sum((self.X_train - x_test) ** 2, axis=1)) # euclidean distance
-            min_dist_indices = np.argsort(eucleadian_dist)[:k]       # indices of k nearest neighbors
-            y_neighbor = self.y_train[min_dist_indices]       # output (y) of k nearest neighbors
-            y_test_predicted[i] = np.bincount(y_neighbor).argmax()  # most occurance
+            eucleadian_dist = np.sqrt(np.sum((self.X_train - x_test) ** 2, axis=1)) 
+            min_dist_indices = np.argsort(eucleadian_dist)[:k]         # indices of k nearest neighbors
+            y_neighbor = self.y_train[min_dist_indices]                # output (y) of k nearest neighbors
+            y_test_predicted[i] = np.bincount(y_neighbor).argmax()     # most occurance
         
         return y_test_predicted
     
@@ -62,5 +62,12 @@ def main():
     knn.shuffle_dataset()
     knn.split_dataset(ratio=0.8)
     knn.get_result()
+    
+    # make a prediction for a new input data point
+    new_input_data = np.array([5.1,3.8,1.6,0.2])
+    new_predicted_output = knn.predict_dataset(new_input_data.reshape(1,-1), k=5)
+
+    print(f"new input dataset: {new_input_data}")
+    print(f"new predicted output: {new_predicted_output[0]}")
     
 main()
