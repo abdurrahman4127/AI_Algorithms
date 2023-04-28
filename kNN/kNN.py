@@ -64,7 +64,7 @@ def main():
     knn.get_result()
     
     # make a prediction for a new input data point
-    new_input_data = np.array([5.1,3.8,1.6,0.2])
+    new_input_data = np.array([5.1, 3.8, 1.6, 0.2])
     new_predicted_output = knn.predict_dataset(new_input_data.reshape(1,-1), k=5)
 
     print(f"new input dataset: {new_input_data}")
